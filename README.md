@@ -1,2 +1,5 @@
-# Portfolio
-Portfolio Website of Yuvraj Aryan
+<<<<<<< HEAD
+(Your local changes)
+=======
+(Changes from the remote branch)
+>>>>>>> branch-name
