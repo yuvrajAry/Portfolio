@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gamma-green: #76b900;
+  --hulk-purple: #8b5cf6;
+}
+
+body {
+  background-color: #050505;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.font-futuristic {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.glass-panel {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(118, 185, 0, 0.2);
+  /* Green border */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.neon-text {
+  text-shadow: 0 0 5px var(--gamma-green), 0 0 15px var(--gamma-green);
+}
+
+.neon-border {
+  box-shadow: 0 0 5px var(--gamma-green), inset 0 0 5px var(--gamma-green);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+  border: 1px solid var(--gamma-green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gamma-green);
+}
+
+/* Hulk Smash Effect Class */
+.hulk-smash:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 0 20px var(--gamma-green);
+  border-color: var(--gamma-green);
+}
