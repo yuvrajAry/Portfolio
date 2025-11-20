@@ -9,6 +9,7 @@ const Navbar = () => {
         { name: 'Map', href: '#experience', icon: Map, color: 'text-gtaBlue' },
         { name: 'Stats', href: '#skills', icon: User, color: 'text-gtaGreen' },
         { name: 'Heists', href: '#projects', icon: Briefcase, color: 'text-gtaOrange' },
+        { name: 'Intel', href: '#intel', icon: Cpu, color: 'text-red-500' },
         { name: 'Contact', href: '#contact', icon: Phone, color: 'text-white' },
     ];
 

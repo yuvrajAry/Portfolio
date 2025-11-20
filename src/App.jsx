@@ -5,6 +5,7 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Intel from './components/Intel';
 import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 
@@ -17,6 +18,7 @@ function App() {
       <Experience />
       <Projects />
       <Skills />
+      <Intel />
       <Contact />
       <Chatbot />
 
