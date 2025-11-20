@@ -1,90 +1,72 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Github, Linkedin } from 'lucide-react';
+import { Menu, X, Map, User, Briefcase, Phone, Cpu } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const navLinks = [
-        { name: 'About', href: '#about' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Map', href: '#experience', icon: Map, color: 'text-gtaBlue' },
+        { name: 'Stats', href: '#skills', icon: User, color: 'text-gtaGreen' },
+        { name: 'Heists', href: '#projects', icon: Briefcase, color: 'text-gtaOrange' },
+        { name: 'Contact', href: '#contact', icon: Phone, color: 'text-white' },
     ];
 
     return (
-        <nav className="fixed w-full z-50 top-0 left-0 px-6 py-4">
-            <div className="max-w-7xl mx-auto glass-panel rounded-none border-2 border-gammaGreen/30 px-6 py-3 flex justify-between items-center bg-black/80">
-                <motion.a
-                    href="#"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="text-3xl font-impact font-bold text-gammaGreen tracking-tighter"
-                >
-                    YA
-                </motion.a>
+        <nav className="fixed w-full z-50 top-0 left-0 p-4">
+            {/* Desktop HUD Menu */}
+            <div className="hidden md:flex justify-between items-start max-w-7xl mx-auto">
+                <div className="flex gap-2">
+                    {/* Mini-map placeholder vibe */}
+                    <div className="w-12 h-12 rounded-full border-4 border-black bg-gray-800 flex items-center justify-center text-white font-gta text-xl shadow-lg">
+                        YA
+                    </div>
+                </div>
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link, index) => (
-                        <motion.a
+                <div className="flex gap-4 bg-black/80 p-2 rounded-full border-2 border-gray-700 backdrop-blur-md">
+                    {navLinks.map((link) => (
+                        <a
                             key={link.name}
                             href={link.href}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="text-gray-300 hover:text-gammaGreen transition-colors duration-300 text-sm uppercase tracking-widest font-bold font-futuristic"
+                            className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 transition-colors group"
                         >
-                            {link.name}
-                        </motion.a>
+                            <link.icon size={18} className={`${link.color} group-hover:scale-110 transition-transform`} />
+                            <span className="text-white font-hud text-sm font-bold uppercase tracking-wide">{link.name}</span>
+                        </a>
                     ))}
-                </div>
-
-                {/* Social Icons */}
-                <div className="hidden md:flex items-center space-x-4">
-                    <motion.a
-                        href="https://github.com/yuvrajAry"
-                        target="_blank"
-                        whileHover={{ scale: 1.2, color: '#76b900' }}
-                        className="text-white transition-colors"
-                    >
-                        <Github size={24} />
-                    </motion.a>
-                    <motion.a
-                        href="https://linkedin.com/in/yuvraj-aryan"
-                        target="_blank"
-                        whileHover={{ scale: 1.2, color: '#76b900' }}
-                        className="text-white transition-colors"
-                    >
-                        <Linkedin size={24} />
-                    </motion.a>
-                </div>
-
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <button onClick={() => setIsOpen(!isOpen)} className="text-gammaGreen">
-                        {isOpen ? <X size={30} /> : <Menu size={30} />}
-                    </button>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Phone Menu Button */}
+            <div className="md:hidden fixed bottom-6 right-6 z-50">
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="w-14 h-14 bg-black border-4 border-gray-800 rounded-full flex items-center justify-center text-white shadow-2xl"
+                >
+                    {isOpen ? <X size={24} /> : <Phone size={24} />}
+                </button>
+            </div>
+
+            {/* Mobile Menu (iFruit style) */}
             {isOpen && (
                 <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="md:hidden absolute top-20 left-0 w-full px-6"
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="md:hidden fixed bottom-24 right-6 w-64 bg-black border-4 border-gray-800 rounded-xl overflow-hidden shadow-2xl"
                 >
-                    <div className="glass-panel rounded-none border-2 border-gammaGreen/30 p-6 flex flex-col space-y-4 bg-black/90">
+                    <div className="bg-gray-900 p-4 text-center border-b border-gray-800">
+                        <h3 className="text-white font-gta text-xl">iFruit</h3>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1 p-1 bg-gray-800">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="text-white hover:text-gammaGreen text-center py-2 font-futuristic font-bold uppercase tracking-widest"
+                                className="bg-black p-4 flex flex-col items-center justify-center gap-2 hover:bg-gray-900 transition-colors aspect-square"
                             >
-                                {link.name}
+                                <link.icon size={24} className={link.color} />
+                                <span className="text-white text-xs font-hud font-bold uppercase">{link.name}</span>
                             </a>
                         ))}
                     </div>

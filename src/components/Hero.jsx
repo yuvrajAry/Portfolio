@@ -1,90 +1,73 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
-import * as random from 'maath/random/dist/maath-random.esm';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 
-const GammaField = (props) => {
-    const ref = useRef();
-    const [sphere] = React.useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
-
-    useFrame((state, delta) => {
-        ref.current.rotation.x -= delta / 10;
-        ref.current.rotation.y -= delta / 15;
-    });
-
-    return (
-        <group rotation={[0, 0, Math.PI / 4]}>
-            <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-                <PointMaterial
-                    transparent
-                    color="#76b900"
-                    size={0.003}
-                    sizeAttenuation={true}
-                    depthWrite={false}
-                />
-            </Points>
-        </group>
-    );
-};
-
 const Hero = () => {
     return (
-        <section className="h-screen w-full relative flex items-center justify-center overflow-hidden bg-black">
-            <div className="absolute inset-0 z-0">
-                <Canvas camera={{ position: [0, 0, 1] }}>
-                    <GammaField />
-                </Canvas>
-            </div>
+        <section className="h-screen w-full relative flex items-center justify-center overflow-hidden bg-vinewood bg-cover bg-center bg-no-repeat bg-fixed">
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-            <div className="z-10 text-center px-4">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-gammaGreen font-futuristic text-lg md:text-xl mb-4 tracking-widest uppercase font-bold"
+            <div className="z-10 text-center px-4 relative">
+                {/* GTA Logo Style */}
+                <motion.div
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.8, type: 'spring' }}
+                    className="mb-8"
                 >
-                    Gamma Radiation Levels: Critical
-                </motion.h2>
-
-                <motion.h1
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-6xl md:text-9xl font-black font-impact text-white mb-6 neon-text tracking-tighter"
-                >
-                    {portfolioData.personalInfo.name.toUpperCase()}
-                </motion.h1>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-gray-300 text-xl md:text-2xl max-w-2xl mx-auto mb-8 font-futuristic"
-                >
-                    {portfolioData.personalInfo.title}
-                </motion.p>
+                    <h2 className="text-2xl md:text-3xl text-white font-gta tracking-wider drop-shadow-lg mb-2">
+                        GRAND THEFT
+                    </h2>
+                    <h1 className="text-6xl md:text-9xl text-white font-gta tracking-tighter drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] leading-none">
+                        <span className="text-gtaGreen">PORT</span>FOLIO
+                    </h1>
+                    <div className="flex justify-center items-center gap-4 mt-4">
+                        <div className="h-1 w-12 bg-white"></div>
+                        <span className="text-xl font-gta text-white tracking-widest uppercase">Los Santos Edition</span>
+                        <div className="h-1 w-12 bg-white"></div>
+                    </div>
+                </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="flex justify-center gap-6"
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="bg-black/70 backdrop-blur-md p-6 rounded-lg border-l-4 border-gtaGreen inline-block max-w-2xl"
+                >
+                    <h3 className="text-gtaGreen font-gta text-2xl mb-2 uppercase">Mission: Get Hired</h3>
+                    <p className="text-gray-200 font-hud text-lg">
+                        {portfolioData.personalInfo.title} | {portfolioData.personalInfo.location}
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="mt-12 flex justify-center gap-6"
                 >
                     <a
                         href="#projects"
-                        className="px-8 py-4 bg-gammaGreen text-black font-bold font-futuristic hover:bg-white hover:text-gammaGreen transition-all duration-300 rounded-sm shadow-[0_0_20px_rgba(118,185,0,0.5)] hover:shadow-[0_0_30px_rgba(118,185,0,0.8)] transform hover:scale-105"
+                        className="px-8 py-3 bg-gtaGreen text-white font-gta text-xl tracking-wide rounded-sm hover:bg-green-600 transition-colors shadow-lg uppercase"
                     >
-                        SMASH PROJECTS
+                        Start Heist
                     </a>
                     <a
                         href="#contact"
-                        className="px-8 py-4 bg-transparent border-2 border-hulkPurple text-hulkPurple font-bold font-futuristic hover:bg-hulkPurple hover:text-white transition-all duration-300 rounded-sm"
+                        className="px-8 py-3 bg-gtaBlue text-white font-gta text-xl tracking-wide rounded-sm hover:bg-blue-600 transition-colors shadow-lg uppercase"
                     >
-                        CONTACT ME
+                        Call Lester
                     </a>
                 </motion.div>
+            </div>
+
+            {/* HUD Elements */}
+            <div className="absolute top-10 right-10 hidden md:block">
+                <div className="bg-black/50 p-4 rounded-lg border-2 border-white/20 backdrop-blur-sm">
+                    <div className="text-gtaGreen font-gta text-3xl text-right">$ 1,000,000,000</div>
+                    <div className="text-white font-hud text-sm text-right uppercase">Bank Account</div>
+                </div>
             </div>
         </section>
     );

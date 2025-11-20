@@ -10,7 +10,7 @@ import Chatbot from './components/Chatbot';
 
 function App() {
   return (
-    <div className="bg-[#050505] min-h-screen text-white selection:bg-gammaGreen selection:text-black">
+    <div className="bg-[#0a0a0a] min-h-screen text-white selection:bg-gtaGreen selection:text-white">
       <Navbar />
       <Hero />
       <About />
@@ -20,9 +20,9 @@ function App() {
       <Contact />
       <Chatbot />
 
-      <footer className="py-8 text-center text-gray-500 text-sm font-mono">
-        <p>© {new Date().getFullYear()} Yuvraj Aryan. All rights reserved.</p>
-        <p className="mt-2 text-gammaGreen font-bold">BUILT TO SMASH.</p>
+      <footer className="py-8 text-center text-gray-600 text-sm font-hud bg-black">
+        <p>© {new Date().getFullYear()} Yuvraj Aryan. Los Santos, SA.</p>
+        <p className="mt-2 text-gtaGreen font-bold uppercase">Wasted? Respawn.</p>
       </footer>
     </div>
   );

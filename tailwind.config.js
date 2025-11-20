@@ -7,17 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        gammaGreen: '#76b900', // Hulk Green
-        hulkPurple: '#8b5cf6', // Purple pants/accents
-        darkBg: '#050505',
-        glass: 'rgba(255, 255, 255, 0.1)',
+        gtaGreen: '#2E8B57', // Franklin
+        gtaBlue: '#4682B4', // Michael
+        gtaOrange: '#FF8C00', // Trevor
+        hudGreen: '#4CAF50', // Stats/Health
+        hudGray: 'rgba(0, 0, 0, 0.7)', // HUD Background
+        wantedRed: '#FF0000', // Wanted stars
       },
       fontFamily: {
-        futuristic: ['Orbitron', 'sans-serif'],
-        impact: ['Impact', 'sans-serif'], // For SMASH effects
+        gta: ['Anton', 'sans-serif'], // Logo style
+        hud: ['Chalet', 'Inter', 'sans-serif'], // UI style
       },
-      animation: {
-        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      backgroundImage: {
+        'vinewood': "url('https://images.unsplash.com/photo-1584967918940-a7d51f06426e?q=80&w=2070&auto=format&fit=crop')", // LA/Los Santos vibe
       }
     },
   },

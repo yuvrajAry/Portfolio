@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot } from 'lucide-react';
+import { MessageSquare, X, Send, User } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([
-        { text: "HULK SMASH BUGS! I mean... Hello! I'm Yuvraj's AI Assistant. Ask me about his projects!", isBot: true }
+        { text: "Listen, I've dug up some info on Yuvraj. What do you want to know? Projects? Skills?", isBot: true }
     ]);
     const messagesEndRef = useRef(null);
 
@@ -21,19 +21,19 @@ const Chatbot = () => {
         const lowerQuery = query.toLowerCase();
 
         if (lowerQuery.includes('project') || lowerQuery.includes('work')) {
-            return "Yuvraj has smashed many projects! 'Adverse Weather Safe Segmentation', 'Fraud Detection System', and 'AI-Auto-Scaling' are some of the strongest. Which one do you want to investigate?";
+            return "Alright, check the board. He's pulled off 'Adverse Weather Safe Segmentation' and 'Fraud Detection'. Big scores. Which one interests you?";
         }
-        if (lowerQuery.includes('skill') || lowerQuery.includes('stack') || lowerQuery.includes('technology')) {
-            return `His arsenal includes ${portfolioData.skills.languages.join(', ')} and frameworks like ${portfolioData.skills.frameworks.join(', ')}.`;
+        if (lowerQuery.includes('skill') || lowerQuery.includes('stack')) {
+            return `His stats are maxed out in ${portfolioData.skills.languages.join(', ')}. He's dangerous with ${portfolioData.skills.frameworks[0]} too.`;
         }
         if (lowerQuery.includes('experience') || lowerQuery.includes('job')) {
-            return "He served as a Cyber Developer Fellow at DeepCytes and a Web Development Intern at Project Human City.";
+            return "He did time at DeepCytes as a Cyber Fellow. Also worked a job at Project Human City. Clean records.";
         }
-        if (lowerQuery.includes('contact') || lowerQuery.includes('email')) {
-            return `Send a transmission to ${portfolioData.personalInfo.email} or check his LinkedIn.`;
+        if (lowerQuery.includes('contact')) {
+            return "Use the iFruit. Send him an email. Don't bring any heat.";
         }
 
-        return "I am programmed to assist. Ask about projects, skills, or experience. Don't make me angry.";
+        return "I don't have intel on that. Stick to the plan: Projects, Skills, Experience.";
     };
 
     const handleSend = (e) => {
@@ -57,7 +57,7 @@ const Chatbot = () => {
                 animate={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-6 right-6 z-50 p-4 bg-gammaGreen rounded-full text-black shadow-[0_0_20px_#76b900] ${isOpen ? 'hidden' : 'block'}`}
+                className={`fixed bottom-6 right-6 z-50 p-4 bg-gtaGreen rounded-full text-white shadow-lg border-2 border-white ${isOpen ? 'hidden' : 'block'}`}
             >
                 <MessageSquare size={24} />
             </motion.button>
@@ -65,30 +65,32 @@ const Chatbot = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 100, scale: 0.8 }}
-                        className="fixed bottom-6 right-6 z-50 w-80 md:w-96 h-[500px] glass-panel rounded-sm flex flex-col overflow-hidden border-2 border-gammaGreen/50 shadow-[0_0_30px_rgba(118,185,0,0.3)]"
+                        initial={{ opacity: 0, y: 100 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 100 }}
+                        className="fixed bottom-6 right-6 z-50 w-80 md:w-96 h-[500px] bg-white rounded-t-xl rounded-b-md shadow-2xl flex flex-col overflow-hidden border border-gray-300"
                     >
-                        {/* Header */}
-                        <div className="p-4 bg-gammaGreen flex justify-between items-center">
+                        {/* Header - LifeInvader style */}
+                        <div className="p-3 bg-[#bf0000] flex justify-between items-center text-white shadow-md">
                             <div className="flex items-center gap-2">
-                                <Bot className="text-black" size={24} />
-                                <span className="font-impact text-black text-lg tracking-wide">AI ASSISTANT</span>
+                                <div className="w-8 h-8 bg-gray-200 rounded-full overflow-hidden border border-white">
+                                    <img src="https://ui-avatars.com/api/?name=Lester+Crest&background=random" alt="Lester" />
+                                </div>
+                                <span className="font-hud font-bold">Lester Crest</span>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="text-black hover:text-white transition-colors">
-                                <X size={24} />
+                            <button onClick={() => setIsOpen(false)} className="hover:text-gray-200">
+                                <X size={20} />
                             </button>
                         </div>
 
                         {/* Messages */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black/90">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-100">
                             {messages.map((msg, idx) => (
                                 <div key={idx} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
                                     <div
-                                        className={`max-w-[80%] p-3 rounded-sm text-sm font-mono ${msg.isBot
-                                                ? 'bg-gray-800 text-gammaGreen border border-gammaGreen/30'
-                                                : 'bg-hulkPurple text-white border border-hulkPurple/30'
+                                        className={`max-w-[80%] p-3 rounded-lg text-sm font-hud shadow-sm ${msg.isBot
+                                                ? 'bg-white text-gray-800 border border-gray-200'
+                                                : 'bg-gtaGreen text-white'
                                             }`}
                                     >
                                         {msg.text}
@@ -99,18 +101,18 @@ const Chatbot = () => {
                         </div>
 
                         {/* Input */}
-                        <form onSubmit={handleSend} className="p-4 border-t border-gammaGreen/20 bg-black">
+                        <form onSubmit={handleSend} className="p-3 bg-white border-t border-gray-200">
                             <div className="flex gap-2">
                                 <input
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
-                                    placeholder="Ask about projects..."
-                                    className="flex-1 bg-gray-900 border border-gray-700 rounded-sm px-3 py-2 text-white text-sm focus:border-gammaGreen focus:outline-none font-mono"
+                                    placeholder="Message Lester..."
+                                    className="flex-1 bg-gray-100 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-gtaGreen font-hud"
                                 />
                                 <button
                                     type="submit"
-                                    className="p-2 bg-gammaGreen text-black rounded-sm hover:bg-white transition-colors"
+                                    className="p-2 bg-gtaGreen text-white rounded-full hover:bg-green-600 transition-colors"
                                 >
                                     <Send size={18} />
                                 </button>
